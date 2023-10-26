@@ -1,0 +1,8 @@
+services:
+  riscv_qemu:
+    build: .
+    image: riscv_qemu:latest
+    container_name: riscv_qemu
+    stdin_open: true
+    tty: true
+    entrypoint: /bin/bash
