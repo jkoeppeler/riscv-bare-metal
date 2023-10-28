@@ -13,26 +13,26 @@ SECTIONS
     PROVIDE(_text_start = .);
     *(.init) *(.text.init) *(.text .text.*)
     PROVIDE(_text_end = .);
-  } >ram AT>ram :text
+  } >ram
 
   .rodata : {
     PROVIDE(_rodata_start = .);
     *(.rodata .rodata.*)
     PROVIDE(_rodata_end = .);
-  } >ram AT>ram :text
+  } >ram
 
   .data : {
     . = ALIGN(4096);
     PROVIDE(_data_start = .);
     *(.sdata .sdata.*) *(.data .data.*)
     PROVIDE(_data_end = .);
-  } >ram AT>ram :data
+  } >ram
 
   .bss :{
     PROVIDE(_bss_start = .);
     *(.sbss .sbss.*) *(.bss .bss.*)
     PROVIDE(_bss_end = .);
-  } >ram AT>ram :bss
+  } >ram
 
   . = . +0x1000;
   _stack = .;
