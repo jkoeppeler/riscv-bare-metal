@@ -27,7 +27,7 @@ ARG USER=riscv
 ENV USER ${USER}
 ENV HOME /home/${USER}
 
-RUN apt update && apt install -y sudo curl
+RUN apt update && apt install -y sudo curl libssl-dev
 
 RUN useradd -m -s /bin/bash -N $USER && \
     echo "${USER} ALL=(ALL) NOPASSWD: ALL" > /etc/sudoers && \
@@ -36,9 +36,10 @@ RUN useradd -m -s /bin/bash -N $USER && \
 USER $USER
 WORKDIR $HOME
 SHELL ["/bin/bash" , "-c"]
-RUN git clone https://github.com/jkoeppeler/riscv-bare-metal.git
 RUN curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | bash -s -- -y \
     && source "$HOME/.cargo/env" \
-    && rustup target add riscv32imac-unknown-none-elf riscv64imac-unknown-none-elf
+    && rustup target add riscv32imac-unknown-none-elf riscv64imac-unknown-none-elf \
+    && cargo install cargo-generate
 
 RUN echo "target remote :1234" > .gdbinit
+RUN git clone https://github.com/jkoeppeler/riscv-bare-metal.git
