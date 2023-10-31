@@ -21,4 +21,8 @@ impl Uart {
     pub fn write(&self, c: u8) {
         unsafe {self.p.rx_tx_reg.write(c)}
     }
+
+    pub fn read(&self) -> u8 {
+        return unsafe {self.p.rx_tx_reg.read()}
+    }
 }
