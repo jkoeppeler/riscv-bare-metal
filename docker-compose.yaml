@@ -1,8 +1,9 @@
 services:
   riscv_qemu:
-    build: .
-    image: riscv_qemu:latest
-    container_name: riscv_qemu
+    image: acatabc/riscv-bare-metal:latest
+    container_name: riscv-bare-metal
     stdin_open: true
     tty: true
     entrypoint: /bin/bash
+    volumes:
+      - ./:/home/riscv/local/
