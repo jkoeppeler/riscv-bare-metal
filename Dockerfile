@@ -42,4 +42,3 @@ RUN curl --proto '=https' --tlsv1.2 https://sh.rustup.rs -sSf | bash -s -- -y \
     && cargo install cargo-generate
 
 RUN echo "target remote :1234" > .gdbinit
-RUN git clone https://github.com/jkoeppeler/riscv-bare-metal.git
