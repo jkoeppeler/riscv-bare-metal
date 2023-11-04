@@ -1,6 +1,6 @@
 #![no_std]
 
-use volatile_register::{RW, RO};
+use volatile_register::{RW, RO, WO};
 
 pub struct Uart {
     p: &'static mut uartRegs,
@@ -9,6 +9,10 @@ pub struct Uart {
 #[repr(C)]
 struct uartRegs {
     pub rx_tx_reg: RW<u8>,
+    pub intr_en: RW<u8>,
+    pub intr_info: RO<u8>,
+    pub lcr: RW<u8>,
+    pub lsr: RO<u8>, 
 }
 
 impl Uart {
