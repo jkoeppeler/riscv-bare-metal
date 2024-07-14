@@ -6,4 +6,4 @@ services:
     tty: true
     entrypoint: /bin/bash
     volumes:
-      - ./:/home/riscv/
+      - ./:/home/riscv/code
